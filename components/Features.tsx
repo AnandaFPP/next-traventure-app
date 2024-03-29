@@ -12,7 +12,7 @@ const Features = () => {
             alt="phone"
             width={400}
             height={1000}
-            className="feature-phone"
+            className="feature-phone object-cover"
           />
         </div>
 
