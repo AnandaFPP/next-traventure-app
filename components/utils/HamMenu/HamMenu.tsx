@@ -1,30 +1,32 @@
-import Camp from "@/components/Camp";
-import Features from "@/components/Features";
-import GetApp from "@/components/GetApp";
-import Guide from "@/components/Guide";
-import Hero from "@/components/Hero";
-import HamMenu from "@/components/utils/HamMenu/HamMenu";
-import SectionWrapper from "@/components/utils/PageWrapper/SectionWrapper";
+"use client";
 
-export default function Home() {
+import { motion, MotionConfig } from "framer-motion";
+import React, { useState } from "react";
+
+const HamMenu = () => {
   return (
     <>
-      <SectionWrapper>
-        <Hero />
-      </SectionWrapper>
-      <SectionWrapper>
-        <Camp />
-      </SectionWrapper>
-      <SectionWrapper>
-        <Guide />
-      </SectionWrapper>
-      <SectionWrapper>
-        <Features />
-      </SectionWrapper>
-      <SectionWrapper>
-        <GetApp />
-      </SectionWrapper>
-      {/* <motion.span
+      <AnimatedHamburgerButton />
+    </>
+  );
+};
+
+const AnimatedHamburgerButton = () => {
+  const [active, setActive] = useState(false);
+  return (
+    <MotionConfig
+      transition={{
+        duration: 0.3,
+        ease: "easeInOut",
+      }}
+    >
+      <motion.button
+        initial={false}
+        onClick={() => setActive((prevOpen) => !prevOpen)}
+        className="relative h-20 w-20 rounded-full"
+        animate={active ? "open" : "closed"}
+      >
+        <motion.span
           style={{
             left: "50%",
             top: "35%",
@@ -79,7 +81,10 @@ export default function Home() {
               bottom: ["50%", "50%", "35%"],
             },
           }}
-        /> */}
-    </>
+        />
+      </motion.button>
+    </MotionConfig>
   );
-}
+};
+
+export default HamMenu;
